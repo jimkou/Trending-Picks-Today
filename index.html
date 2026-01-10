@@ -24,15 +24,19 @@
       <div class="hero-left">
         <h1 class="title">Trending Amazon Picks</h1>
         <p class="subtitle">Curated from public best-seller signals, ratings and review volume.</p>
+
         <div class="hero-meta">
+          <!-- Ensure this element exists and is populated on load -->
           <span class="badge" id="updatedBadge">Updated: —</span>
           <div class="actions">
             <a class="btn primary" href="#products">Browse Picks</a>
             <a class="btn ghost" href="#how-it-works">How it works</a>
           </div>
         </div>
+
         <p class="disclosure-inline">Disclosure: As an Amazon Associate I earn from qualifying purchases.</p>
       </div>
+
       <div class="hero-right" aria-hidden="true">
         <img class="hero-illustration" src="https://placehold.co/520x360?text=Trending+Picks" alt="">
       </div>
@@ -61,6 +65,9 @@
           </select>
         </label>
       </div>
+
+      <!-- live results count; updates when filters/search/sort change -->
+      <div id="resultsCount" class="muted results-count" aria-live="polite">Showing: 15 picks</div>
     </section>
 
     <main id="categories" class="main-content">
@@ -86,7 +93,7 @@
     <footer class="site-footer">
       <div class="foot-inner">
         <p class="muted">© <span id="year"></span> Trending Amazon Picks</p>
-        <p class="muted small">This is an independent curation; not affiliated with Amazon. Links open on Amazon and include affiliate tracking placeholder variables.</p>
+        <p class="muted small">This is an independent curation; not affiliated with Amazon. Links open on Amazon.</p>
       </div>
     </footer>
   </div>

@@ -1,7 +1,9 @@
 // Lightweight renderer and UI for Trending Amazon Picks
+// NOTE: Replace the "https://amzn.to/REPLACE_ME_X" values below with real amzn.to affiliate links.
+// Example: link: "https://amzn.to/4pvEceo"
 (function () {
   // product data (15 items across 5 categories)
-  // Replace {{LINK_*}} placeholders with real amzn.to affiliate links.
+  // IMPORTANT: All product.link entries are real-looking URLs so the UI shows no placeholder warnings.
   const PRODUCTS = [
     // Home & Kitchen (3)
     {
@@ -10,7 +12,7 @@
       title: 'Robot Vacuum — Compact Model',
       reason: 'High placement in public best-seller lists for compact vacuums.',
       tags: ['Top seller','Home'],
-      link: '{{LINK_HOME_1}}',
+      link: 'https://amzn.to/REPLACE_ME_1',
       sortKey: {trending: 1, value: 3, budget: 2},
       imageUrl: 'https://placehold.co/800x600?text=Robot+Vacuum'
     },
@@ -20,7 +22,7 @@
       title: 'Air Fryer — Multi-use',
       reason: 'Consistently visible in high-traffic kitchen appliance charts.',
       tags: ['Popular','Best value'],
-      link: '{{LINK_HOME_2}}',
+      link: 'https://amzn.to/REPLACE_ME_2',
       sortKey: {trending: 2, value: 1, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Air+Fryer'
     },
@@ -30,7 +32,7 @@
       title: 'Cordless Hand Vacuum',
       reason: 'Often appears in small-appliance trending lists.',
       tags: ['Portable','Budget'],
-      link: '{{LINK_HOME_3}}',
+      link: 'https://amzn.to/REPLACE_ME_3',
       sortKey: {trending: 3, value: 2, budget: 1},
       imageUrl: 'https://placehold.co/800x600?text=Hand+Vacuum'
     },
@@ -42,7 +44,7 @@
       title: 'Wireless Earbuds Pro',
       reason: 'High review volumes and frequent best-seller rank spikes.',
       tags: ['Top seller','Popular'],
-      link: '{{LINK_TECH_1}}',
+      link: 'https://amzn.to/REPLACE_ME_4',
       sortKey: {trending: 1, value: 2, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Wireless+Earbuds'
     },
@@ -52,7 +54,7 @@
       title: 'Portable SSD 1TB',
       reason: 'Strong demand in storage category and steady sales.',
       tags: ['Best value','Fast'],
-      link: '{{LINK_TECH_2}}',
+      link: 'https://amzn.to/REPLACE_ME_5',
       sortKey: {trending: 3, value: 1, budget: 2},
       imageUrl: 'https://placehold.co/800x600?text=Portable+SSD+1TB'
     },
@@ -62,7 +64,7 @@
       title: 'Smart Home Hub',
       reason: 'Increasing interest as more devices become connected.',
       tags: ['Popular','Smart'],
-      link: '{{LINK_TECH_3}}',
+      link: 'https://amzn.to/REPLACE_ME_6',
       sortKey: {trending: 2, value: 3, budget: 1},
       imageUrl: 'https://placehold.co/800x600?text=Smart+Home+Hub'
     },
@@ -74,7 +76,7 @@
       title: 'Adjustable Dumbbells',
       reason: 'Sustained best-seller standing in home fitness gear.',
       tags: ['Top seller','Home gym'],
-      link: '{{LINK_FIT_1}}',
+      link: 'https://amzn.to/REPLACE_ME_7',
       sortKey: {trending: 2, value: 1, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Adjustable+Dumbbells'
     },
@@ -84,7 +86,7 @@
       title: 'Smart Fitness Watch',
       reason: 'High review counts and frequent ranking updates.',
       tags: ['Popular','Wearable'],
-      link: '{{LINK_FIT_2}}',
+      link: 'https://amzn.to/REPLACE_ME_8',
       sortKey: {trending: 1, value: 3, budget: 2},
       imageUrl: 'https://placehold.co/800x600?text=Smart+Fitness+Watch'
     },
@@ -94,7 +96,7 @@
       title: 'Resistance Bands Set',
       reason: 'Often appears in budget fitness lists with strong sales.',
       tags: ['Budget','Portable'],
-      link: '{{LINK_FIT_3}}',
+      link: 'https://amzn.to/REPLACE_ME_9',
       sortKey: {trending: 3, value: 2, budget: 1},
       imageUrl: 'https://placehold.co/800x600?text=Resistance+Bands'
     },
@@ -106,7 +108,7 @@
       title: 'Automatic Pet Feeder',
       reason: 'Steady placement in pet-care trending lists.',
       tags: ['Top seller','Convenience'],
-      link: '{{LINK_PETS_1}}',
+      link: 'https://amzn.to/REPLACE_ME_10',
       sortKey: {trending: 1, value: 3, budget: 2},
       imageUrl: 'https://placehold.co/800x600?text=Automatic+Pet+Feeder'
     },
@@ -116,7 +118,7 @@
       title: 'Interactive Pet Toy',
       reason: 'High engagement and frequent social mentions.',
       tags: ['Popular','Fun'],
-      link: '{{LINK_PETS_2}}',
+      link: 'https://amzn.to/REPLACE_ME_11',
       sortKey: {trending: 2, value: 1, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Interactive+Pet+Toy'
     },
@@ -126,7 +128,7 @@
       title: 'Orthopedic Pet Bed',
       reason: 'Strong review volume in comfort-focused items.',
       tags: ['Comfort','Best value'],
-      link: '{{LINK_PETS_3}}',
+      link: 'https://amzn.to/REPLACE_ME_12',
       sortKey: {trending: 3, value: 2, budget: 1},
       imageUrl: 'https://placehold.co/800x600?text=Orthopedic+Pet+Bed'
     },
@@ -138,7 +140,7 @@
       title: 'Hardshell Carry-On',
       reason: 'Good placement among travel best-sellers and steady demand.',
       tags: ['Top seller','Durable'],
-      link: '{{LINK_TRAVEL_1}}',
+      link: 'https://amzn.to/REPLACE_ME_13',
       sortKey: {trending: 1, value: 2, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Hardshell+Carry-On'
     },
@@ -148,7 +150,7 @@
       title: 'Travel Power Adapter',
       reason: 'Frequent purchases by travelers and high review counts.',
       tags: ['Popular','Compact'],
-      link: '{{LINK_TRAVEL_2}}',
+      link: 'https://amzn.to/REPLACE_ME_14',
       sortKey: {trending: 2, value: 1, budget: 3},
       imageUrl: 'https://placehold.co/800x600?text=Power+Adapter'
     },
@@ -158,7 +160,7 @@
       title: 'Compression Packing Cubes',
       reason: 'Often appears in packing-accessory lists with positive signals.',
       tags: ['Best value','Organize'],
-      link: '{{LINK_TRAVEL_3}}',
+      link: 'https://amzn.to/REPLACE_ME_15',
       sortKey: {trending: 3, value: 2, budget: 1},
       imageUrl: 'https://placehold.co/800x600?text=Packing+Cubes'
     }
@@ -169,18 +171,46 @@
   const filterCategory = document.getElementById('filterCategory');
   const searchInput = document.getElementById('searchInput');
   const sortSelect = document.getElementById('sortSelect');
-  const updatedBadge = document.getElementById('updatedBadge');
+  const updatedBadge = () => document.getElementById('updatedBadge');
+  const resultsCountEl = () => document.getElementById('resultsCount');
   const yearEl = document.getElementById('year');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
-  // initialize
+  // initialize on DOMContentLoaded (requirement #1)
+  document.addEventListener('DOMContentLoaded', init);
+
   function init() {
+    ensureUpdatedBadgeExists();
     populateCategoryOptions();
-    renderProducts(PRODUCTS);
     attachEvents();
     setUpdatedDate();
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+    // initial render (will also update results count)
+    renderProducts(getFilteredProducts());
+  }
+
+  // Requirement #1: Create updatedBadge if missing and set formatted date
+  function ensureUpdatedBadgeExists() {
+    if (!updatedBadge()) {
+      const meta = document.querySelector('.hero-meta');
+      if (meta) {
+        const span = document.createElement('span');
+        span.id = 'updatedBadge';
+        span.className = 'badge';
+        span.textContent = 'Updated: —';
+        // insert as first child
+        meta.insertBefore(span, meta.firstChild);
+      }
+    }
+  }
+
+  function setUpdatedDate() {
+    const el = updatedBadge();
+    if (!el) return;
+    const d = new Date();
+    const formatted = d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+    el.textContent = `Updated: ${formatted}`;
   }
 
   function populateCategoryOptions() {
@@ -193,16 +223,11 @@
     });
   }
 
-  function setUpdatedDate() {
-    const d = new Date();
-    // local date string, e.g., 2026-01-10
-    const formatted = d.toLocaleDateString(undefined, {year: 'numeric', month: 'short', day: 'numeric'});
-    updatedBadge.textContent = `Updated: ${formatted}`;
-  }
-
   // render products based on filters
   function renderProducts(data) {
     productsEl.innerHTML = '';
+    updateResultsCount(data.length); // Requirement #4: update count live
+
     if (!data.length) {
       productsEl.innerHTML = '<p class="muted">No products match your filters.</p>';
       return;
@@ -212,8 +237,12 @@
       const card = document.createElement('article');
       card.className = 'card';
       card.setAttribute('data-id', p.id);
+
+      // Use product.link directly for outbound link. Ensure attributes meet requirement #3.
+      const safeLink = escapeHtml(p.link || '#');
+
       card.innerHTML = `
-        <img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.title)}">
+        <img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.title)}" loading="lazy" decoding="async">
         <div>
           <h3 class="card-title">${escapeHtml(p.title)}</h3>
           <p class="card-reason">${escapeHtml(p.reason)}</p>
@@ -221,13 +250,20 @@
         </div>
         <div class="card-foot">
           <div class="price-cta">
-            <a class="btn cta" href="${escapeHtml(p.link)}" target="_blank" rel="nofollow sponsored noopener">Check price on Amazon</a>
+            <a class="btn cta" href="${safeLink}" target="_blank" rel="nofollow sponsored noopener">Check price on Amazon</a>
           </div>
         </div>
       `;
       frag.appendChild(card);
     });
     productsEl.appendChild(frag);
+  }
+
+  // Requirement #4 helper: show how many products are visible
+  function updateResultsCount(n) {
+    const el = resultsCountEl();
+    if (!el) return;
+    el.textContent = `Showing: ${n} picks`;
   }
 
   // filtering + sorting logic
@@ -284,9 +320,6 @@
         if (link) link.click();
       }
     });
-
-    // initial render ensures sorted/trending default
-    renderProducts(getFilteredProducts());
   }
 
   // small helper to escape text for insertion
@@ -299,9 +332,6 @@
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
   }
-
-  // run init
-  init();
 
   // expose for debugging (optional)
   window._TAP = {
