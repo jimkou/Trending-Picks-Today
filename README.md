@@ -1,13 +1,23 @@
-# best-robot-vacuums
+```markdown
+Trending Amazon Picks — quick notes
 
-Static site for “Best Robot Vacuums Today”.
+Where to replace links:
+- All product objects are stored in `assets/script.js` in the PRODUCTS array.
+- Each product has a `link` field currently set to placeholders like `{{LINK_HOME_1}}`.
+- Replace those placeholders with your real amzn.to affiliate URLs.
 
-This repository contains a single static page (index.html) intended to be served with GitHub Pages.
+Files added/updated:
+- index.html — single static entry page
+- assets/styles.css — styling (dark theme, responsive)
+- assets/script.js — data + rendering + UI (filters, search, sort)
 
-Affiliate links included for the following products:
-- Roomba j7+: https://amzn.to/4pvEceo
-- Roborock Q5+: https://amzn.to/4pxLaQc
-- Shark AI Ultra: https://amzn.to/4ptAx0v
+How to edit:
+1. Clone your repo and checkout `gh-pages` (or the branch you're using for Pages).
+2. Update `assets/script.js` PRODUCT entries, swapping placeholder `link` values with real affiliate links.
+3. Commit & push — GitHub Pages will publish the changes automatically.
 
-To publish: ensure gh-pages is selected as the Pages source in repository Settings → Pages. The site URL will typically be:
-https://jimkou.github.io/best-robot-vacuums/
+Notes:
+- This is plain HTML/CSS/vanilla JS — no build step required.
+- Use the `imageUrl` fields to point to real product images later.
+- All Amazon links include `rel="nofollow sponsored noopener"` and `target="_blank"` to follow affiliate best practices.
+```

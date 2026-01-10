@@ -3,121 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Best Robot Vacuums Today</title>
-  <meta name="description" content="Curated best-selling robot vacuums on Amazon based on ratings, reviews and sales performance." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://jimkou.github.io/best-robot-vacuums/" />
-
+  <title>Trending Amazon Picks</title>
+  <meta name="description" content="Curated trending picks from public best-seller signals, ratings and review volume." />
   <link rel="stylesheet" href="assets/styles.css">
-  <script type="module" defer src="assets/scripts.js"></script>
-
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Best Robot Vacuums Today","description":"Curated best-selling robot vacuums on Amazon based on ratings, reviews and sales performance."}
-  </script>
 </head>
-<body class="page">
-  <header class="site-header" role="banner">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Best Robot Vacuums home">
-        <svg class="logo" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7v1H4v6h16v-6h-1V9a7 7 0 0 0-7-7zM7 20a1 1 0 0 1-1-1 4 4 0 0 1 8 0 1 1 0 0 1-1 1H7z"></path></svg>
-        <span class="brand-title">Best Robot Vacuums</span>
-      </a>
-    </div>
-  </header>
-
-  <main class="main" id="main" role="main">
-    <section class="hero wrap">
-      <div class="hero-content">
-        <h1 class="hero-title">Best Robot Vacuums Today</h1>
-        <p class="hero-sub">Curated best-selling robot vacuums on Amazon — rated for performance, reliability, and value.</p>
-
-        <p class="hero-actions">
-          <a class="btn primary" href="#products" role="button">See Top Picks</a>
-          <a class="btn ghost" href="#how-we-choose" role="button">How we choose</a>
-        </p>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <!-- Decorative floating vacuum graphic -->
-        <svg class="vacuum-illustration" viewBox="0 0 200 200" role="img" focusable="false">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0" stop-color="#7C3AED"/>
-              <stop offset="1" stop-color="#06B6D4"/>
-            </linearGradient>
-          </defs>
-          <circle cx="100" cy="100" r="80" fill="url(#g)" opacity="0.12"></circle>
-          <g transform="translate(40,50)" fill="#111" opacity="0.95">
-            <rect x="10" y="40" rx="8" ry="8" width="110" height="40" fill="#fff" />
-            <circle cx="25" cy="60" r="8" fill="#f3f4f6"></circle>
-            <rect x="45" y="46" width="58" height="8" rx="4" fill="#e6e7eb"></rect>
-            <rect x="50" y="58" width="48" height="6" rx="3" fill="#e6e7eb"></rect>
-          </g>
-        </svg>
-      </div>
-    </section>
-
-    <section id="products" class="wrap products" aria-labelledby="products-heading">
-      <h2 id="products-heading" class="section-heading">Top picks right now</h2>
-
-      <ul class="cards" role="list">
-        <li class="card" data-index="0">
-          <div class="card-body">
-            <h3 class="card-title">Roomba j7+</h3>
-            <p class="card-copy">Excellent obstacle avoidance and reliable mapping for busy homes.</p>
-          </div>
-          <div class="card-footer">
-            <a class="btn cta" href="https://amzn.to/4pvEceo" target="_blank" rel="noopener noreferrer nofollow" aria-label="View Roomba j7+ on Amazon">View on Amazon</a>
-          </div>
-        </li>
-
-        <li class="card" data-index="1">
-          <div class="card-body">
-            <h3 class="card-title">Roborock Q5+</h3>
-            <p class="card-copy">Strong suction, long battery life, and excellent value.</p>
-          </div>
-          <div class="card-footer">
-            <a class="btn cta" href="https://amzn.to/4pxLaQc" target="_blank" rel="noopener noreferrer nofollow" aria-label="View Roborock Q5+ on Amazon">View on Amazon</a>
-          </div>
-        </li>
-
-        <li class="card" data-index="2">
-          <div class="card-body">
-            <h3 class="card-title">Shark AI Ultra</h3>
-            <p class="card-copy">Smart navigation and powerful cleaning for pet hair and carpets.</p>
-          </div>
-          <div class="card-footer">
-            <a class="btn cta" href="https://amzn.to/4ptAx0v" target="_blank" rel="noopener noreferrer nofollow" aria-label="View Shark AI Ultra on Amazon">View on Amazon</a>
-          </div>
-        </li>
+<body class="bg-dark">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#home">Trending Amazon Picks</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#disclosure">Disclosure</a></li>
       </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    </nav>
+
+    <header id="home" class="hero">
+      <div class="hero-left">
+        <h1 class="title">Trending Amazon Picks</h1>
+        <p class="subtitle">Curated from public best-seller signals, ratings and review volume.</p>
+        <div class="hero-meta">
+          <span class="badge" id="updatedBadge">Updated: —</span>
+          <div class="actions">
+            <a class="btn primary" href="#products">Browse Picks</a>
+            <a class="btn ghost" href="#how-it-works">How it works</a>
+          </div>
+        </div>
+        <p class="disclosure-inline">Disclosure: As an Amazon Associate I earn from qualifying purchases.</p>
+      </div>
+      <div class="hero-right" aria-hidden="true">
+        <img class="hero-illustration" src="https://placehold.co/520x360?text=Trending+Picks" alt="">
+      </div>
+    </header>
+
+    <section id="controls" class="controls" aria-label="Filters and search">
+      <div class="control-row">
+        <label class="control">
+          <span class="label">Category</span>
+          <select id="filterCategory">
+            <option value="all">All categories</option>
+          </select>
+        </label>
+
+        <label class="control search">
+          <span class="label sr-only">Search products</span>
+          <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products">
+        </label>
+
+        <label class="control">
+          <span class="label">Sort by</span>
+          <select id="sortSelect" aria-label="Sort products">
+            <option value="trending">Trending</option>
+            <option value="value">Best value</option>
+            <option value="budget">Budget</option>
+          </select>
+        </label>
+      </div>
     </section>
 
-    <section id="how-we-choose" class="wrap how-we-choose" aria-labelledby="how-heading">
-      <h2 id="how-heading" class="section-heading">How we choose</h2>
-      <p>We track Amazon best-seller rankings, customer ratings, and overall review volume to identify robot vacuums that consistently perform well and are trusted by buyers.</p>
-      <ul class="criteria">
-        <li><strong>High customer ratings</strong> and positive feedback</li>
-        <li><strong>Strong and consistent sales performance</strong></li>
-        <li><strong>Established brand reliability</strong></li>
-        <li><strong>Overall value for money</strong></li>
-      </ul>
+    <main id="categories" class="main-content">
+      <h2 class="section-heading">Categories</h2>
+
+      <div id="products" class="grid" aria-live="polite" role="region" aria-label="Product results">
+        <!-- cards rendered here -->
+      </div>
+    </main>
+
+    <section id="how-it-works" class="how-we-choose">
+      <h2>How it works</h2>
+      <p>
+        We surface trending items using public best-seller rankings, ratings and review volume combined with observed social signals. This page is a curated hub to help you discover popular and noteworthy products — always verify full specifications and current prices on the Amazon product page before purchasing.
+      </p>
     </section>
 
-  </main>
+    <section id="disclosure" class="disclosure">
+      <h3>Disclosure</h3>
+      <p>Disclosure: As an Amazon Associate I earn from qualifying purchases.</p>
+    </section>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="wrap">
-      <p>As an Amazon Associate I earn from qualifying purchases.</p>
-      <p class="muted">© <span id="year"></span> Best Robot Vacuums</p>
-    </div>
-  </footer>
+    <footer class="site-footer">
+      <div class="foot-inner">
+        <p class="muted">© <span id="year"></span> Trending Amazon Picks</p>
+        <p class="muted small">This is an independent curation; not affiliated with Amazon. Links open on Amazon and include affiliate tracking placeholder variables.</p>
+      </div>
+    </footer>
+  </div>
 
-  <noscript>
-    <style>
-      .card { opacity: 1; transform: none; }
-    </style>
-    <div class="noscript-note wrap">JavaScript is disabled — animations are reduced for accessibility.</div>
-  </noscript>
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
