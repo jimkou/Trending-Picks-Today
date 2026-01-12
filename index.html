@@ -16,6 +16,7 @@
   
 
   <style>
+    /* === CSS Variables === */
     :root {
       --bg: #001519;
       --card-bg: #002029;
@@ -23,6 +24,10 @@
       --text: #E8F4F8;
       --muted: #7DA5B3;
       --border: #003D4D;
+      --badge-top: #FFD700;
+      --badge-value: #4CAF50;
+      --badge-budget: #FF9800;
+      --star-color: #FFB800;
     }
 
     * { box-sizing: border-box; }
@@ -33,6 +38,7 @@
       padding: 0;
     }
 
+    /* === Base Typography & Layout === */
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
@@ -43,7 +49,7 @@
     }
 
     .wrap {
-      max-width: 720px;
+      max-width: 960px; /* Increased for better readability */
       margin: 0 auto;
       padding: 20px;
     }
@@ -51,16 +57,67 @@
     .panel {
       background: var(--card-bg);
       border-radius: 10px;
-      padding: 40px;
+      padding: 48px; /* Better vertical rhythm */
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
+    /* === Sticky Category Navigation === */
+    .category-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--card-bg);
+      margin: -48px -48px 40px -48px;
+      padding: 16px 48px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .category-nav::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .category-nav::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    .category-nav::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .category-nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+    }
+
+    .category-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+      padding: 8px 0;
+      display: block;
+    }
+
+    .category-nav a:hover,
+    .category-nav a.active {
+      color: var(--accent);
+    }
+
+    /* === Header === */
     .site-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
-      padding-bottom: 20px;
+      margin-bottom: 48px; /* Better spacing */
+      padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -91,22 +148,25 @@
       color: var(--text);
     }
 
+    /* === Hero Section === */
     .hero {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
 
     .hero h2 {
-      font-size: 2rem;
-      margin: 0 0 12px 0;
+      font-size: 2.25rem; /* Enhanced hierarchy */
+      margin: 0 0 16px 0;
       font-weight: 700;
       color: var(--accent);
+      line-height: 1.2;
     }
 
     .lead {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--text);
-      margin: 0 0 8px 0;
+      margin: 0 0 12px 0;
+      line-height: 1.5;
     }
 
     .trust {
@@ -115,13 +175,25 @@
       margin: 0;
     }
 
-    .spaced {
-      margin-bottom: 40px;
+    .last-updated {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+      padding: 4px 12px;
+      background: rgba(0, 217, 255, 0.1);
+      border-radius: 12px;
     }
 
+    /* === Section Spacing === */
+    .spaced {
+      margin-bottom: 56px; /* Better vertical rhythm */
+    }
+
+    /* === How We Choose Section === */
     .how h3 {
-      font-size: 1.3rem;
-      margin: 0 0 12px 0;
+      font-size: 1.5rem; /* Better hierarchy */
+      margin: 0 0 16px 0;
       font-weight: 600;
       color: var(--text);
     }
@@ -133,9 +205,10 @@
     }
 
     .how ul li {
-      padding: 8px 0 8px 24px;
+      padding: 10px 0 10px 28px;
       position: relative;
       color: var(--text);
+      font-size: 1.05rem;
     }
 
     .how ul li:before {
@@ -144,47 +217,115 @@
       left: 0;
       color: var(--accent);
       font-weight: bold;
+      font-size: 1.2rem;
     }
 
+    /* === Product Cards === */
     .product-list-intro {
       font-size: 0.95rem;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-align: center;
     }
 
     .products {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .card {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      transition: border-color 0.2s;
+      gap: 24px;
+      position: relative;
+      /* Enhanced shadow and hover animation */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .card:hover {
       border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 217, 255, 0.2);
+    }
+
+    /* Badge support */
+    .card-badge {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .card-badge.top-pick {
+      background: var(--badge-top);
+      color: var(--bg);
+    }
+
+    .card-badge.best-value {
+      background: var(--badge-value);
+      color: white;
+    }
+
+    .card-badge.budget {
+      background: var(--badge-budget);
+      color: white;
+    }
+
+    .card-content {
+      flex: 1;
     }
 
     .card-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    /* Star rating UI */
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .star {
+      color: var(--star-color);
+      font-size: 1rem;
+    }
+
+    .star.empty {
+      color: var(--border);
+    }
+
+    .rating-text {
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
     .card-reason {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
+      line-height: 1.5;
     }
 
     .card-cta {
@@ -192,20 +333,24 @@
       flex-shrink: 0;
     }
 
+    /* Enhanced CTA button */
     .primary-btn {
       display: inline-block;
       background: var(--accent);
       color: var(--bg);
       text-decoration: none;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border-radius: 6px;
       font-weight: 600;
-      font-size: 0.95rem;
-      transition: opacity 0.2s;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 217, 255, 0.3);
     }
 
     .primary-btn:hover {
-      opacity: 0.9;
+      background: #00C4E6;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4);
     }
 
     .primary-btn:focus {
@@ -219,9 +364,141 @@
       margin-top: 6px;
     }
 
+    /* === Comparison Table === */
+    .comparison-section {
+      margin-bottom: 56px;
+    }
+
+    .comparison-section h3 {
+      font-size: 1.5rem;
+      margin: 0 0 24px 0;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg);
+    }
+
+    .comparison-table thead {
+      background: var(--card-bg);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .comparison-table th {
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .comparison-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .comparison-table tbody tr:hover {
+      background: rgba(0, 217, 255, 0.05);
+    }
+
+    .comparison-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-product-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .table-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .table-price {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .table-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .table-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* === Trust Section === */
+    .trust-section {
+      background: rgba(0, 217, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .trust-section h3 {
+      font-size: 1.3rem;
+      margin: 0 0 16px 0;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .trust-section p {
+      margin: 12px 0;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .trust-item h4 {
+      font-size: 1.1rem;
+      margin: 0 0 8px 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .trust-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* === Footer === */
     .site-footer {
-      margin-top: 40px;
-      padding-top: 20px;
+      margin-top: 56px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
       text-align: center;
     }
@@ -229,9 +506,11 @@
     .disclosure {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 8px;
+      margin-top: 12px;
+      line-height: 1.5;
     }
 
+    /* === Utility Classes === */
     .sr-only {
       position: absolute !important;
       width: 1px;
@@ -244,24 +523,36 @@
       border: 0;
     }
 
-    @media (max-width: 640px) {
+    /* === Responsive Design === */
+    @media (max-width: 768px) {
       .panel {
-        padding: 24px;
+        padding: 32px 24px;
+      }
+
+      .category-nav {
+        margin: -32px -24px 32px -24px;
+        padding: 12px 24px;
+      }
+
+      .category-nav ul {
+        gap: 16px;
       }
 
       .site-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
+        margin-bottom: 32px;
       }
 
       .hero h2 {
-        font-size: 1.6rem;
+        font-size: 1.75rem;
       }
 
       .card {
         flex-direction: column;
         align-items: flex-start;
+        padding: 20px;
       }
 
       .card-cta {
@@ -272,12 +563,62 @@
         display: block;
         width: 100%;
       }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      /* Mobile: show table as cards */
+      .comparison-table thead {
+        display: none;
+      }
+
+      .comparison-table,
+      .comparison-table tbody,
+      .comparison-table tr,
+      .comparison-table td {
+        display: block;
+      }
+
+      .comparison-table tr {
+        margin-bottom: 20px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        background: var(--bg);
+      }
+
+      .comparison-table td {
+        padding: 8px 0;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .comparison-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
   <main class="wrap">
     <div class="panel" role="main" aria-labelledby="site-title">
+      <!-- Sticky Category Navigation -->
+      <nav class="category-nav" aria-label="Category navigation">
+        <ul>
+          <li><a href="#products" class="active">All Products</a></li>
+          <li><a href="#comparison">Compare</a></li>
+          <li><a href="#how-we-choose">How We Choose</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+
       <header class="site-header" role="banner">
         <div class="brand" aria-hidden="false">
           <div class="logo" aria-hidden="true">TP</div>
@@ -286,20 +627,16 @@
             <p class="sr-only">Trending product discovery hub</p>
           </div>
         </div>
-
-        <!-- Minimal nav placeholder (keeps UI balanced; text updated) -->
-        <nav aria-label="Main navigation">
-          <span style="color:var(--muted); font-size:0.95rem;">Trending · Categories · About</span>
-        </nav>
       </header>
 
       <section class="hero" aria-labelledby="hero-heading">
         <h2 id="hero-heading">Trending Picks Today</h2>
         <p class="lead">Curated trending products based on buyer activity, ratings, and popularity signals.</p>
         <p class="trust">Updated daily · No reviews · No opinions · Just what people are buying</p>
+        <div class="last-updated">Last updated: January 12, 2026</div>
       </section>
 
-      <section class="how spaced" aria-labelledby="how-we-choose">
+      <section class="how spaced" id="how-we-choose" aria-labelledby="how-we-choose">
         <h3 id="how-we-choose">How we identify trending picks</h3>
         <p class="sr-only">Methodology summary for accessibility</p>
         <p style="color:var(--muted); margin-top:8px;">
@@ -312,54 +649,172 @@
         </ul>
       </section>
 
-      <section aria-labelledby="products" class="spaced">
+      <section aria-labelledby="products" class="spaced" id="products">
         <div class="product-list-intro">Showing the most popular picks right now</div>
 
-        <div class="products" id="products" role="list">
-          <!-- Card 1 -->
+        <div class="products" role="list">
+          <!-- Card 1 - Top Pick -->
           <article class="card" role="listitem" aria-labelledby="p1-title">
-            <div>
+            <span class="card-badge top-pick">Top Pick</span>
+            <div class="card-content">
               <div id="p1-title" class="card-title">Roomba j7+</div>
+              <div class="card-rating">
+                <div class="stars" aria-label="4.5 out of 5 stars">
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">☆</span>
+                </div>
+                <span class="rating-text">4.5/5</span>
+              </div>
               <div class="card-reason">Popular pick — strong buyer activity and consistent ratings</div>
             </div>
 
             <div class="card-cta">
               <a class="primary-btn" href="https://amzn.to/4pvEceo" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Roomba j7+ on Amazon">
-                Check price
+                View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
             </div>
           </article>
 
-          <!-- Card 2 -->
+          <!-- Card 2 - Best Value -->
           <article class="card" role="listitem" aria-labelledby="p2-title">
-            <div>
+            <span class="card-badge best-value">Best Value</span>
+            <div class="card-content">
               <div id="p2-title" class="card-title">Roborock Q5+</div>
+              <div class="card-rating">
+                <div class="stars" aria-label="4.6 out of 5 stars">
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">☆</span>
+                </div>
+                <span class="rating-text">4.6/5</span>
+              </div>
               <div class="card-reason">Buyer favorite — commonly purchased for its value and features</div>
             </div>
 
             <div class="card-cta">
               <a class="primary-btn" href="https://amzn.to/4pxLaQc" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Roborock Q5+ on Amazon">
-                Check price
+                View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
             </div>
           </article>
 
-          <!-- Card 3 -->
+          <!-- Card 3 - Budget Pick -->
           <article class="card" role="listitem" aria-labelledby="p3-title">
-            <div>
+            <span class="card-badge budget">Budget Pick</span>
+            <div class="card-content">
               <div id="p3-title" class="card-title">Shark AI Ultra</div>
+              <div class="card-rating">
+                <div class="stars" aria-label="4.3 out of 5 stars">
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">★</span>
+                  <span class="star">☆</span>
+                </div>
+                <span class="rating-text">4.3/5</span>
+              </div>
               <div class="card-reason">Trending pick — frequently purchased and widely selected</div>
             </div>
 
             <div class="card-cta">
               <a class="primary-btn" href="https://amzn.to/4ptAx0v" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Shark AI Ultra on Amazon">
-                Check price
+                View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <!-- Comparison Table Section -->
+      <section class="comparison-section" id="comparison">
+        <h3>Product Comparison</h3>
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Rating</th>
+                <th>Price Range</th>
+                <th>Best For</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Product" class="table-product-name">Roomba j7+</td>
+                <td data-label="Rating">
+                  <div class="table-rating">
+                    <div class="stars">
+                      <span class="star">★★★★☆</span>
+                    </div>
+                    <span>4.5</span>
+                  </div>
+                </td>
+                <td data-label="Price" class="table-price">$$$$</td>
+                <td data-label="Best For">Premium features & smart navigation</td>
+                <td data-label="Action">
+                  <a href="https://amzn.to/4pvEceo" class="table-btn" target="_blank" rel="nofollow sponsored noopener">View</a>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Product" class="table-product-name">Roborock Q5+</td>
+                <td data-label="Rating">
+                  <div class="table-rating">
+                    <div class="stars">
+                      <span class="star">★★★★☆</span>
+                    </div>
+                    <span>4.6</span>
+                  </div>
+                </td>
+                <td data-label="Price" class="table-price">$$$</td>
+                <td data-label="Best For">Best value & reliability</td>
+                <td data-label="Action">
+                  <a href="https://amzn.to/4pxLaQc" class="table-btn" target="_blank" rel="nofollow sponsored noopener">View</a>
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Product" class="table-product-name">Shark AI Ultra</td>
+                <td data-label="Rating">
+                  <div class="table-rating">
+                    <div class="stars">
+                      <span class="star">★★★★☆</span>
+                    </div>
+                    <span>4.3</span>
+                  </div>
+                </td>
+                <td data-label="Price" class="table-price">$$</td>
+                <td data-label="Best For">Budget-conscious buyers</td>
+                <td data-label="Action">
+                  <a href="https://amzn.to/4ptAx0v" class="table-btn" target="_blank" rel="nofollow sponsored noopener">View</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Trust & Transparency Section -->
+      <section class="trust-section" id="about">
+        <h3>Trust & Transparency</h3>
+        <p>We're committed to helping you find trending products that match real buyer behavior and market signals.</p>
+        
+        <div class="trust-grid">
+          <div class="trust-item">
+            <h4>How We Choose</h4>
+            <p>Products are selected based on consistent buyer activity, popularity signals, and category relevance—not paid placements or sponsored reviews.</p>
+          </div>
+          <div class="trust-item">
+            <h4>Affiliate Disclosure</h4>
+            <p>We earn commissions from qualifying purchases made through our links. This helps support our research at no extra cost to you.</p>
+          </div>
         </div>
       </section>
 
@@ -369,6 +824,54 @@
       </footer>
     </div>
   </main>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.category-nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Update active state
+          document.querySelectorAll('.category-nav a').forEach(link => {
+            link.classList.remove('active');
+          });
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Update active nav on scroll (optional enhancement)
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.category-nav a[href^="#"]');
+        
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= (sectionTop - 100)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }, 100);
+    });
+  </script>
 
 </body>
 </html>
