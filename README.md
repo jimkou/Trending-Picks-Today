@@ -1,6 +1,6 @@
 # Trending Picks Today
 
-A premium static site for showcasing trending products, built with pure HTML, CSS, and vanilla JavaScript.
+A premium static site for showcasing trending products, built with pure HTML, CSS, and vanilla JavaScript. 
 
 ## Features
 
