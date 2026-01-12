@@ -21,9 +21,13 @@
   // ============================================
   // 2. Star Rating Generator
   // ============================================
+  // Constants for half-star rating thresholds
+  const HALF_STAR_MIN = 0.3;
+  const HALF_STAR_MAX = 0.8;
+  
   function generateStars(rating, size = '1rem') {
     const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.3 && rating % 1 < 0.8;
+    const hasHalfStar = rating % 1 >= HALF_STAR_MIN && rating % 1 < HALF_STAR_MAX;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     
     let starsHTML = '';
