@@ -85,6 +85,15 @@ open http://localhost:8000
 
 The site automatically deploys to GitHub Pages via `.github/workflows/deploy-gh-pages.yml` on every push to the `main` branch.
 
+**GitHub Pages URL:** https://jimkou.github.io/Trending-Picks-Today/
+
+The deployment workflow:
+1. Triggers on every push to `main` branch
+2. Deploys site contents to the `gh-pages` branch
+3. GitHub Pages serves the site from the `gh-pages` branch
+
+To verify deployment status, check the [Actions tab](https://github.com/jimkou/Trending-Picks-Today/actions) in the repository.
+
 ## Browser Compatibility
 
 - Modern browsers (Chrome, Firefox, Safari, Edge)
