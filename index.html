@@ -155,24 +155,25 @@
     }
 
     .hero h2 {
-      font-size: 2.25rem; /* Enhanced hierarchy */
-      margin: 0 0 16px 0;
+      font-size: 2.5rem; /* Enhanced hierarchy */
+      margin: 0 0 20px 0; /* Better spacing */
       font-weight: 700;
       color: var(--accent);
       line-height: 1.2;
     }
 
     .lead {
-      font-size: 1.15rem;
+      font-size: 1.2rem; /* Slightly larger */
       color: var(--text);
-      margin: 0 0 12px 0;
+      margin: 0 0 16px 0; /* Better spacing */
       line-height: 1.5;
+      font-weight: 400;
     }
 
     .trust {
       font-size: 0.95rem;
       color: var(--muted);
-      margin: 0;
+      margin: 0 0 16px 0; /* Better spacing from last-updated */
     }
 
     .last-updated {
@@ -535,6 +536,162 @@
       line-height: 1.5;
     }
 
+    /* === Product Card Images === */
+    .card-image {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Watch button styling */
+    .watch-btn {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: rgba(0, 217, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .watch-btn:hover {
+      background: rgba(0, 217, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* === Table Product with Image === */
+    .table-product-with-image {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .table-product-thumb {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .table-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-watch-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 217, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .table-watch-btn:hover {
+      background: rgba(0, 217, 255, 0.2);
+    }
+
+    /* === Video Modal === */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+
+    .video-modal.active {
+      display: block;
+    }
+
+    .video-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(4px);
+    }
+
+    .video-modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 500px;
+      max-height: 90vh;
+      z-index: 1001;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+
+    .video-modal-close:hover {
+      color: var(--accent);
+    }
+
+    .video-modal-iframe-wrapper {
+      position: relative;
+      width: 100%;
+      /* 9:16 aspect ratio for YouTube Shorts */
+      padding-bottom: 177.78%;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-modal-iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
     /* === Utility Classes === */
     .sr-only {
       position: absolute !important;
@@ -574,10 +731,30 @@
         font-size: 1.75rem;
       }
 
+      .lead {
+        font-size: 1rem;
+      }
+
+      .video-modal-content {
+        width: 95%;
+        max-width: 400px;
+      }
+
+      .video-modal-close {
+        top: -35px;
+        font-size: 1.5rem;
+      }
+
       .card {
         flex-direction: column;
         align-items: flex-start;
         padding: 20px;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 16px;
       }
 
       .card-cta {
@@ -587,6 +764,10 @@
       .primary-btn {
         display: block;
         width: 100%;
+      }
+
+      .watch-btn {
+        margin-top: 8px;
       }
 
       .trust-grid {
@@ -864,63 +1045,8 @@
     </div>
   </main>
 
-  <script>
-    // Set current date dynamically
-    (function() {
-      const dateElement = document.getElementById('update-date');
-      if (dateElement) {
-        const now = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        dateElement.textContent = now.toLocaleDateString('en-US', options);
-      }
-    })();
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('.category-nav a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          
-          // Update active state
-          document.querySelectorAll('.category-nav a').forEach(link => {
-            link.classList.remove('active');
-          });
-          this.classList.add('active');
-        }
-      });
-    });
-
-    // Update active nav on scroll (with performance optimization)
-    let scrollTimeout;
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.category-nav a[href^="#"]');
-    
-    window.addEventListener('scroll', function() {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function() {
-        let current = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          if (window.scrollY >= (sectionTop - 100)) {
-            current = section.getAttribute('id');
-          }
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-          }
-        });
-      }, 100);
-    });
-  </script>
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
 
 </body>
 </html>
