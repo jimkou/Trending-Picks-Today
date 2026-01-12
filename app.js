@@ -65,7 +65,8 @@
     const container = document.querySelector('.products');
     if (!container) return;
 
-    container.innerHTML = '';
+    // Build complete HTML string first for better performance
+    let cardsHTML = '';
 
     products.forEach((product) => {
       const badgeLabel = getBadgeLabel(product.badge);
@@ -74,7 +75,7 @@
       // Determine if we should show video button
       const hasVideo = product.videoUrl && product.videoUrl.trim() !== '';
       
-      const cardHTML = `
+      cardsHTML += `
         <article class="card" role="listitem" aria-labelledby="${product.id}-title">
           ${badgeLabel ? `<span class="card-badge ${product.badge}">${badgeLabel}</span>` : ''}
           
@@ -114,9 +115,10 @@
           </div>
         </article>
       `;
-      
-      container.innerHTML += cardHTML;
     });
+    
+    // Set innerHTML once for better performance
+    container.innerHTML = cardsHTML;
   }
 
   // ============================================
@@ -126,13 +128,14 @@
     const tbody = document.querySelector('.comparison-table tbody');
     if (!tbody) return;
 
-    tbody.innerHTML = '';
+    // Build complete HTML string first for better performance
+    let rowsHTML = '';
 
     products.forEach((product) => {
       const starsHTML = generateStars(product.rating, '0.9rem');
       const hasVideo = product.videoUrl && product.videoUrl.trim() !== '';
       
-      const rowHTML = `
+      rowsHTML += `
         <tr>
           <td data-label="Product">
             ${product.imageUrl ? `
@@ -171,9 +174,10 @@
           </td>
         </tr>
       `;
-      
-      tbody.innerHTML += rowHTML;
     });
+    
+    // Set innerHTML once for better performance
+    tbody.innerHTML = rowsHTML;
   }
 
   // ============================================
@@ -211,13 +215,29 @@
     // Open modal function
     function openModal(videoUrl) {
       // Convert regular YouTube URL to embed URL if needed
+      // Handle various YouTube URL formats safely
       let embedUrl = videoUrl;
-      if (videoUrl.includes('youtube.com/watch?v=')) {
-        const videoId = videoUrl.split('v=')[1].split('&')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
-      } else if (videoUrl.includes('youtu.be/')) {
-        const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      
+      try {
+        const url = new URL(videoUrl);
+        let videoId = null;
+        
+        // Handle youtube.com/watch?v=VIDEO_ID format
+        if (url.hostname.includes('youtube.com') && url.searchParams.has('v')) {
+          videoId = url.searchParams.get('v');
+        }
+        // Handle youtu.be/VIDEO_ID format
+        else if (url.hostname.includes('youtu.be')) {
+          videoId = url.pathname.slice(1).split('?')[0];
+        }
+        
+        // If we successfully extracted a video ID, create embed URL
+        if (videoId) {
+          embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        }
+      } catch (e) {
+        // If URL parsing fails, use the original URL as-is
+        console.warn('Could not parse video URL, using as-is:', videoUrl);
       }
       
       iframe.src = embedUrl;
