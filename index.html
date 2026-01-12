@@ -313,9 +313,14 @@
       font-size: 1rem;
     }
 
+    .star.empty {
+      color: var(--border);
+    }
+
     .star.half {
       position: relative;
       display: inline-block;
+      color: var(--border);
     }
 
     .star.half::after {
@@ -326,14 +331,6 @@
       width: 50%;
       overflow: hidden;
       color: var(--star-color);
-    }
-
-    .star.half {
-      color: var(--border);
-    }
-
-    .star.empty {
-      color: var(--border);
     }
 
     .rating-text {
@@ -599,7 +596,9 @@
 
       /* Mobile: show table as cards */
       .comparison-table thead {
-        display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
       }
 
       .comparison-table,
@@ -700,7 +699,7 @@
             </div>
 
             <div class="card-cta">
-              <a class="primary-btn" href="https://amzn.to/4pvEceo" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Roomba j7+ on Amazon">
+              <a class="primary-btn" href="https://amzn.to/4pvEceo" target="_blank" rel="nofollow sponsored noopener" aria-label="View price for Roomba j7+ on Amazon">
                 View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
@@ -726,7 +725,7 @@
             </div>
 
             <div class="card-cta">
-              <a class="primary-btn" href="https://amzn.to/4pxLaQc" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Roborock Q5+ on Amazon">
+              <a class="primary-btn" href="https://amzn.to/4pxLaQc" target="_blank" rel="nofollow sponsored noopener" aria-label="View price for Roborock Q5+ on Amazon">
                 View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
@@ -752,7 +751,7 @@
             </div>
 
             <div class="card-cta">
-              <a class="primary-btn" href="https://amzn.to/4ptAx0v" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for Shark AI Ultra on Amazon">
+              <a class="primary-btn" href="https://amzn.to/4ptAx0v" target="_blank" rel="nofollow sponsored noopener" aria-label="View price for Shark AI Ultra on Amazon">
                 View Price
               </a>
               <div class="cta-sub">Opens on Amazon</div>
@@ -896,18 +895,18 @@
       });
     });
 
-    // Update active nav on scroll (optional enhancement)
+    // Update active nav on scroll (with performance optimization)
     let scrollTimeout;
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.category-nav a[href^="#"]');
+    
     window.addEventListener('scroll', function() {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(function() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.category-nav a[href^="#"]');
-        
         let current = '';
+        
         sections.forEach(section => {
           const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
           if (window.scrollY >= (sectionTop - 100)) {
             current = section.getAttribute('id');
           }
