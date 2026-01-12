@@ -223,11 +223,12 @@
         let videoId = null;
         
         // Handle youtube.com/watch?v=VIDEO_ID format
-        if (url.hostname.includes('youtube.com') && url.searchParams.has('v')) {
+        // Use exact domain matching for security
+        if ((url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com') && url.searchParams.has('v')) {
           videoId = url.searchParams.get('v');
         }
         // Handle youtu.be/VIDEO_ID format
-        else if (url.hostname.includes('youtu.be')) {
+        else if (url.hostname === 'youtu.be') {
           videoId = url.pathname.slice(1).split('?')[0];
         }
         
@@ -237,7 +238,7 @@
         }
       } catch (e) {
         // If URL parsing fails, use the original URL as-is
-        console.warn('Could not parse video URL, using as-is:', videoUrl);
+        console.warn('Could not parse video URL');
       }
       
       iframe.src = embedUrl;
