@@ -1,0 +1,38 @@
+[
+  {
+    "id": "roomba-j7-plus",
+    "name": "Roomba j7+",
+    "badge": "top-pick",
+    "rating": 4.5,
+    "priceRange": "$$$$",
+    "bestFor": "Premium features & smart navigation",
+    "reason": "Popular pick — strong buyer activity and consistent ratings",
+    "amazonUrl": "https://amzn.to/4pvEceo",
+    "imageUrl": "https://via.placeholder.com/300x300/002029/00D9FF?text=Roomba+j7%2B",
+    "videoUrl": ""
+  },
+  {
+    "id": "roborock-q5-plus",
+    "name": "Roborock Q5+",
+    "badge": "best-value",
+    "rating": 4.6,
+    "priceRange": "$$$",
+    "bestFor": "Best value & reliability",
+    "reason": "Buyer favorite — commonly purchased for its value and features",
+    "amazonUrl": "https://amzn.to/4pxLaQc",
+    "imageUrl": "https://via.placeholder.com/300x300/002029/00D9FF?text=Roborock+Q5%2B",
+    "videoUrl": ""
+  },
+  {
+    "id": "shark-ai-ultra",
+    "name": "Shark AI Ultra",
+    "badge": "budget",
+    "rating": 4.3,
+    "priceRange": "$$",
+    "bestFor": "Budget-conscious buyers",
+    "reason": "Trending pick — frequently purchased and widely selected",
+    "amazonUrl": "https://amzn.to/4ptAx0v",
+    "imageUrl": "https://via.placeholder.com/300x300/002029/00D9FF?text=Shark+AI+Ultra",
+    "videoUrl": ""
+  }
+]
