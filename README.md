@@ -83,16 +83,35 @@ open http://localhost:8000
 
 ## Deployment
 
+### Automatic GitHub Pages Deployment
+
 The site automatically deploys to GitHub Pages via `.github/workflows/deploy-gh-pages.yml` on every push to the `main` branch.
 
-**GitHub Pages URL:** https://jimkou.github.io/Trending-Picks-Today/
+**Live Site:** https://jimkou.github.io/Trending-Picks-Today/
 
-The deployment workflow:
-1. Triggers on every push to `main` branch
-2. Deploys site contents to the `gh-pages` branch
-3. GitHub Pages serves the site from the `gh-pages` branch
+### Initial Setup (One-Time Configuration)
 
-To verify deployment status, check the [Actions tab](https://github.com/jimkou/Trending-Picks-Today/actions) in the repository.
+To enable GitHub Pages for this repository:
+
+1. Go to repository **Settings** > **Pages**
+2. Under **Source**, select **GitHub Actions** from the dropdown
+3. Save the settings
+
+Once configured, the workflow will:
+1. Trigger on every push to `main` branch (or manual workflow dispatch)
+2. Build and upload site artifacts using official GitHub Actions
+3. Deploy to GitHub Pages automatically
+4. Provide deployment URL in the Actions logs
+
+### Verifying Deployment
+
+- Check deployment status: [Actions tab](https://github.com/jimkou/Trending-Picks-Today/actions)
+- View the workflow run to see the deployed URL
+- The site URL will be: `https://jimkou.github.io/Trending-Picks-Today/`
+
+### Manual Deployment
+
+You can manually trigger a deployment from the [Actions tab](https://github.com/jimkou/Trending-Picks-Today/actions) using the "Run workflow" button.
 
 ## Browser Compatibility
 
