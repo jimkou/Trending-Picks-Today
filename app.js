@@ -23,7 +23,7 @@
   // ============================================
   const PLACEHOLDER_IMAGE = 'assets/placeholder.svg';
   // Amazon Image API endpoint (ws-eu works globally for all marketplaces)
-  const AMAZON_IMAGE_MARKETPLACE = 'US'; // Can be changed to: US, UK, DE, FR, IT, ES, CA, JP, etc.
+  const AMAZON_IMAGE_MARKETPLACE = 'DE'; // Can be changed to: US, UK, DE, FR, IT, ES, CA, JP, etc.
 
   // ============================================
   // 3. Star Rating Generator
