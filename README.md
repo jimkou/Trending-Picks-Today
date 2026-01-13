@@ -35,26 +35,55 @@ Edit `products.json` to manage products. Each product has:
   "bestFor": "Description of who this is best for",
   "reason": "Why this product is trending",
   "amazonUrl": "https://amzn.to/...",
-  "imageUrl": "https://...",  // Optional: product image URL
+  "asin": "B0XXXXXXXXX",  // Amazon Standard Identification Number (enables auto images)
+  "imageUrl": "https://...",  // Optional: custom product image URL (overrides ASIN)
   "videoUrl": "https://www.youtube.com/watch?v=..."  // Optional: YouTube URL
 }
 ```
 
-### Using Product Images
+### Automatic Product Images with ASIN
 
-**Important:** The current `products.json` uses placeholder images from `via.placeholder.com`. For production:
+**The easiest way to add product images is using Amazon ASIN:**
 
-1. **Option 1: Use actual product images**
+1. **Find the ASIN** from the Amazon product page URL or product details section
+   - Example: `https://www.amazon.com/dp/B09XCQMW8V/` → ASIN is `B09XCQMW8V`
+   
+2. **Add ASIN to products.json:**
+   ```json
+   {
+     "name": "Roomba j7+",
+     "asin": "B09XCQMW8V",
+     ...
+   }
+   ```
+
+3. **Images load automatically** from Amazon's image service
+
+**Image Priority & Fallback:**
+- If `imageUrl` is provided → uses that image
+- Else if `asin` is provided → generates Amazon image URL automatically  
+- Else → shows local placeholder image (`assets/placeholder.svg`)
+- If any image fails to load → falls back to placeholder
+
+### Using Custom Product Images
+
+**Important:** For production, you have these options:
+
+1. **Option 1: Use ASIN (Recommended - easiest)**
+   - Just add the `asin` field to your products
+   - Images load automatically from Amazon
+
+2. **Option 2: Use custom hosted images**
    - Upload images to your repository (e.g., in an `images/` folder)
    - Update `imageUrl` to point to your images: `"imageUrl": "images/roomba-j7.jpg"`
 
-2. **Option 2: Use CDN-hosted images**
+3. **Option 3: Use CDN-hosted images**
    - Host images on a reliable CDN (Cloudinary, Imgix, etc.)
    - Update `imageUrl` with CDN URLs
 
-3. **Option 3: No images**
-   - Set `imageUrl` to empty string: `"imageUrl": ""`
-   - The site will gracefully handle missing images
+4. **Option 4: No images**
+   - Omit both `imageUrl` and `asin` fields
+   - The site will show a placeholder image
 
 ### Adding Video Support
 

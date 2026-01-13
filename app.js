@@ -63,6 +63,30 @@
   }
 
   // ============================================
+  // 3.5. Product Image URL Generator
+  // ============================================
+  /**
+   * Gets the appropriate image URL for a product with fallback logic:
+   * 1. If product.imageUrl exists -> use it
+   * 2. Else if product.asin exists -> generate Amazon image URL
+   * 3. Else -> use local placeholder
+   */
+  function getProductImageUrl(product) {
+    // First priority: existing imageUrl
+    if (product.imageUrl && product.imageUrl.trim() !== '') {
+      return product.imageUrl;
+    }
+    
+    // Second priority: generate from ASIN
+    if (product.asin && product.asin.trim() !== '') {
+      return `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${product.asin}&Format=_SL500_&ID=AsinImage&MarketPlace=GR&ServiceVersion=20070822`;
+    }
+    
+    // Fallback: local placeholder
+    return 'assets/placeholder.svg';
+  }
+
+  // ============================================
   // 4. Render Product Cards
   // ============================================
   function renderProductCards(products) {
@@ -75,6 +99,7 @@
     products.forEach((product) => {
       const badgeLabel = getBadgeLabel(product.badge);
       const starsHTML = generateStars(product.rating);
+      const imageUrl = getProductImageUrl(product);
       
       // Determine if we should show video button
       const hasVideo = product.videoUrl && product.videoUrl.trim() !== '';
@@ -83,17 +108,16 @@
         <article class="card" role="listitem" aria-labelledby="${product.id}-title">
           ${badgeLabel ? `<span class="card-badge ${product.badge}">${badgeLabel}</span>` : ''}
           
-          ${product.imageUrl ? `
           <div class="card-image">
             <img 
-              src="${product.imageUrl}" 
+              src="${imageUrl}" 
               alt="${product.name}" 
               loading="lazy"
               width="120"
               height="120"
+              onerror="this.onerror=null; this.src='assets/placeholder.svg';"
             />
           </div>
-          ` : ''}
           
           <div class="card-content">
             <div id="${product.id}-title" class="card-title">${product.name}</div>
@@ -107,8 +131,8 @@
           </div>
 
           <div class="card-cta">
-            <a class="primary-btn" href="${product.amazonUrl}" target="_blank" rel="nofollow sponsored noopener" aria-label="View price for ${product.name} on Amazon">
-              View Price
+            <a class="primary-btn" href="${product.amazonUrl}" target="_blank" rel="nofollow sponsored noopener" aria-label="Check price for ${product.name} on Amazon">
+              Check price
             </a>
             <div class="cta-sub">Opens on Amazon</div>
             ${hasVideo ? `
@@ -138,23 +162,23 @@
     products.forEach((product) => {
       const starsHTML = generateStars(product.rating, '0.9rem');
       const hasVideo = product.videoUrl && product.videoUrl.trim() !== '';
+      const imageUrl = getProductImageUrl(product);
       
       rowsHTML += `
         <tr>
           <td data-label="Product">
-            ${product.imageUrl ? `
             <div class="table-product-with-image">
               <img 
-                src="${product.imageUrl}" 
+                src="${imageUrl}" 
                 alt="${product.name}" 
                 class="table-product-thumb"
                 loading="lazy"
                 width="40"
                 height="40"
+                onerror="this.onerror=null; this.src='assets/placeholder.svg';"
               />
               <span class="table-product-name">${product.name}</span>
             </div>
-            ` : `<span class="table-product-name">${product.name}</span>`}
           </td>
           <td data-label="Rating">
             <div class="table-rating">
