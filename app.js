@@ -19,7 +19,13 @@
   }
 
   // ============================================
-  // 2. Star Rating Generator
+  // 2. Constants
+  // ============================================
+  const PLACEHOLDER_IMAGE = 'assets/placeholder.svg';
+  const AMAZON_IMAGE_MARKETPLACE = 'US'; // Can be changed to: US, UK, DE, FR, IT, ES, CA, JP, etc.
+
+  // ============================================
+  // 3. Star Rating Generator
   // ============================================
   // Constants for half-star rating thresholds
   const HALF_STAR_MIN = 0.3;
@@ -51,7 +57,7 @@
   }
 
   // ============================================
-  // 3. Badge Label Mapping
+  // 4. Badge Label Mapping
   // ============================================
   function getBadgeLabel(badge) {
     const labels = {
@@ -63,7 +69,7 @@
   }
 
   // ============================================
-  // 3.5. Product Image URL Generator
+  // 5. Product Image URL Generator
   // ============================================
   /**
    * Gets the appropriate image URL for a product with fallback logic:
@@ -79,15 +85,15 @@
     
     // Second priority: generate from ASIN
     if (product.asin && product.asin.trim() !== '') {
-      return `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${product.asin}&Format=_SL500_&ID=AsinImage&MarketPlace=GR&ServiceVersion=20070822`;
+      return `https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${product.asin}&Format=_SL500_&ID=AsinImage&MarketPlace=${AMAZON_IMAGE_MARKETPLACE}&ServiceVersion=20070822`;
     }
     
     // Fallback: local placeholder
-    return 'assets/placeholder.svg';
+    return PLACEHOLDER_IMAGE;
   }
 
   // ============================================
-  // 4. Render Product Cards
+  // 6. Render Product Cards
   // ============================================
   function renderProductCards(products) {
     const container = document.querySelector('.products');
@@ -115,7 +121,7 @@
               loading="lazy"
               width="120"
               height="120"
-              onerror="this.onerror=null; this.src='assets/placeholder.svg';"
+              onerror="this.onerror=null; this.src='${PLACEHOLDER_IMAGE}';"
             />
           </div>
           
@@ -150,7 +156,7 @@
   }
 
   // ============================================
-  // 5. Render Comparison Table
+  // 7. Render Comparison Table
   // ============================================
   function renderComparisonTable(products) {
     const tbody = document.querySelector('.comparison-table tbody');
@@ -175,7 +181,7 @@
                 loading="lazy"
                 width="40"
                 height="40"
-                onerror="this.onerror=null; this.src='assets/placeholder.svg';"
+                onerror="this.onerror=null; this.src='${PLACEHOLDER_IMAGE}';"
               />
               <span class="table-product-name">${product.name}</span>
             </div>
@@ -209,7 +215,7 @@
   }
 
   // ============================================
-  // 6. Video Modal Functionality
+  // 8. Video Modal Functionality
   // ============================================
   function initVideoModal() {
     // Create modal if it doesn't exist
@@ -304,7 +310,7 @@
   }
 
   // ============================================
-  // 7. Load Products and Initialize
+  // 9. Load Products and Initialize
   // ============================================
   async function loadProducts() {
     try {
@@ -328,7 +334,7 @@
   }
 
   // ============================================
-  // 8. Smooth Scrolling & Navigation
+  // 10. Smooth Scrolling & Navigation
   // ============================================
   function initNavigation() {
     // Smooth scrolling for navigation links
@@ -379,7 +385,7 @@
   }
 
   // ============================================
-  // 9. Initialize Everything on DOM Ready
+  // 11. Initialize Everything on DOM Ready
   // ============================================
   function init() {
     // Set last updated date

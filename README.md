@@ -59,6 +59,10 @@ Edit `products.json` to manage products. Each product has:
 
 3. **Images load automatically** from Amazon's image service
 
+**Configuration:**
+- The default Amazon marketplace is set to `US` in `app.js`
+- To change it, edit the `AMAZON_IMAGE_MARKETPLACE` constant to: `US`, `UK`, `DE`, `FR`, `IT`, `ES`, `CA`, `JP`, etc.
+
 **Image Priority & Fallback:**
 - If `imageUrl` is provided → uses that image
 - Else if `asin` is provided → generates Amazon image URL automatically  
