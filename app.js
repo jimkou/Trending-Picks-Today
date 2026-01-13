@@ -22,6 +22,7 @@
   // 2. Constants
   // ============================================
   const PLACEHOLDER_IMAGE = 'assets/placeholder.svg';
+  // Amazon Image API endpoint (ws-eu works globally for all marketplaces)
   const AMAZON_IMAGE_MARKETPLACE = 'US'; // Can be changed to: US, UK, DE, FR, IT, ES, CA, JP, etc.
 
   // ============================================
